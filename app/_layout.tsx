@@ -1,16 +1,33 @@
 import "../i18n/i18n";
-import { useFonts } from 'expo-font';
-import { Stack } from 'expo-router';
-import * as SplashScreen from 'expo-splash-screen';
-import { useEffect } from 'react';
-import 'react-native-reanimated';
-
 import "../global.css";
+
+import "react-native-reanimated";
+import { Stack } from "expo-router";
+import {
+  useFonts,
+  Inter_400Regular,
+  Inter_500Medium,
+  Inter_600SemiBold,
+  Inter_700Bold,
+  Inter_900Black,
+} from "@expo-google-fonts/inter";
+import * as SplashScreen from "expo-splash-screen";
+import { useEffect } from "react";
+import ThemeProvider from "@/components/common/ThemeProvider";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { colorScheme } from "nativewind";
+import useThemeStore from "@/stores/theme";
+import cn from "@/utils/cn";
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
+  const hogwartsTheme = useThemeStore((state) => state.hogwartsTheme);
   const [loaded] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
+    interRegular: Inter_400Regular,
+    interMedium: Inter_500Medium,
+    interSemiBold: Inter_600SemiBold,
+    interBold: Inter_700Bold,
+    interBlack: Inter_900Black,
   });
 
   useEffect(() => {
@@ -24,9 +41,20 @@ export default function RootLayout() {
   }
 
   return (
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="+not-found" />
-      </Stack>
+    <ThemeProvider>
+      <SafeAreaView
+        edges={["top"]}
+        className={cn("flex-1", hogwartsTheme ? "bg-primary" : "bg-background")}
+      >
+        <Stack
+          initialRouteName={"chooseHouse"}
+          screenOptions={{ headerShown: false }}
+        >
+          <Stack.Screen name="(tabs)" />
+          <Stack.Screen name="chooseHouse" />
+          <Stack.Screen name="+not-found" />
+        </Stack>
+      </SafeAreaView>
+    </ThemeProvider>
   );
 }

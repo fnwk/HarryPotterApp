@@ -1,24 +1,74 @@
-import { Tabs } from 'expo-router';
-import React from 'react';
+import { Tabs } from "expo-router";
+import React from "react";
 
-import { TabBarIcon } from '@/components/navigation/TabBarIcon';
+import { TabBarIcon } from "@/components/navigation/TabBarIcon";
+import HouseHeader from "@/components/HouseHeader";
+import useColor from "@/utils/hooks/useColor";
+import { Icon } from "@/assets/Icon";
+import { View } from "react-native";
 
 export default function TabLayout() {
+  const tabBarBackground = useColor("gamma");
+
   return (
-    <Tabs
-      screenOptions={{
-        tabBarActiveTintColor: "#000",
-        headerShown: false,
-        tabBarShowLabel: false,
-      }}>
-      <Tabs.Screen
-        name="index"
-        options={{
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'home' : 'home-outline'} color={color} />
-          ),
+    <View className={"bg-background flex-1"}>
+      <HouseHeader />
+      <Tabs
+        screenOptions={{
+          tabBarStyle: {
+            borderTopWidth: 0,
+            width: 212,
+            marginHorizontal: "auto",
+            backgroundColor: tabBarBackground,
+            borderRadius: 1000,
+            marginBottom: 40,
+            paddingBottom: 0,
+            padding: 0,
+            paddingHorizontal: 10,
+            height: 64,
+            flexDirection: "row",
+            alignItems: "center",
+          },
+          tabBarActiveTintColor: "#000",
+          headerShown: false,
+          tabBarShowLabel: false,
         }}
-      />
-    </Tabs>
+      >
+        <Tabs.Screen
+          name="games"
+          options={{
+            tabBarIcon: ({ color, focused }) => (
+              <View className={"w-[64]  h-[64] items-center justify-center"}>
+                <Icon name={"rect"} />
+              </View>
+            ),
+          }}
+        />
+        <Tabs.Screen
+          name="index"
+          options={{
+            tabBarIcon: ({ color, focused }) => (
+              <View
+                className={
+                  "bg-primary h-[64] w-[64] rounded-full items-center justify-center"
+                }
+              >
+                <Icon name={"home"} />
+              </View>
+            ),
+          }}
+        />
+        <Tabs.Screen
+          name="games2"
+          options={{
+            tabBarIcon: ({ color, focused }) => (
+              <View className={"w-[64]  h-[64] items-center justify-center"}>
+                <Icon name={"rect"} />
+              </View>
+            ),
+          }}
+        />
+      </Tabs>
+    </View>
   );
 }
