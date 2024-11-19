@@ -3,18 +3,22 @@ import { initReactI18next } from "react-i18next";
 
 import commonPL from "@/locales/pl/common.json";
 import housesPL from "@/locales/pl/houses.json";
+import homePL from "@/locales/pl/home.json";
 
 import commonEN from "@/locales/en/common.json";
 import housesEN from "@/locales/en/houses.json";
+import homeEN from "@/locales/en/home.json";
 
 export const resources = {
   pl: {
     common: commonPL,
     houses: housesPL,
+    home: homePL,
   },
   en: {
     common: commonEN,
     houses: housesEN,
+    home: homeEN,
   },
 };
 
@@ -28,7 +32,7 @@ i18n.use(initReactI18next).init({
   ns: ns,
   resources,
   defaultNS: defaultNS,
-  lng: "pl",
+  lng: "en",
   interpolation: {
     escapeValue: false,
   },

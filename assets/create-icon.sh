@@ -42,6 +42,7 @@ echo "
 interface IconProps extends SvgProps {
     name: IconType;
     noStroke?: boolean;
+    fillDefault?: boolean;
     className?: string;
 }
 " >> Icon.tsx
@@ -49,12 +50,23 @@ interface IconProps extends SvgProps {
 
 
 echo "
-const AppIcon = ({name, noStroke, ...props}: IconProps) => {
-    const CurrentIcon = ICONS[name]
-    const color = useColor('beta');
+const AppIcon = ({
+  name,
+  noStroke,
+  fillDefault,
+  ...props
+}: IconProps) => {
+  const CurrentIcon = ICONS[name];
+  const color = useColor('beta');
 
-    return <CurrentIcon {...props} stroke={noStroke ? 'none' : color}/>
-}
+  return (
+    <CurrentIcon
+      {...props}
+      stroke={noStroke ? 'none' : color}
+      fill={fillDefault ? color : 'none'}
+    />
+  );
+};
 
 export const Icon = React.memo(AppIcon);
 " >> Icon.tsx

@@ -1,6 +1,4 @@
-/** @type {import('tailwindcss').Config} */
-module.exports = {
-  // NOTE: Update this to include the paths to all of your component files.
+const config = {
   content: ["./app/**/*.{js,jsx,ts,tsx}", "./components/**/*.{js,jsx,ts,tsx}"],
   presets: [require("nativewind/preset")],
   theme: {
@@ -22,9 +20,11 @@ module.exports = {
       colors: {
         primary: "var(--color-primary)",
         background: "var(--color-background)",
+        loading: "var(--color-loading)",
         alpha: "var(--color-alpha)",
         beta: "var(--color-beta)",
         gamma: "var(--color-gamma)",
+        input: "#8D99AE",
       },
     },
   },
@@ -37,3 +37,5 @@ module.exports = {
       }),
   ],
 };
+
+module.exports = config;

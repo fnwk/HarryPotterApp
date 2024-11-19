@@ -1,0 +1,19 @@
+{
+  "welcome": "Witaj",
+  "toHarryPotter": "w świecie Harry'ego Pottera",
+  "search": "Wyszukaj...",
+  "allHouses": "Wszystkie domy",
+  "sortingOptions": [
+    {
+      "label": "Alfabetycznie",
+      "value": "name"
+    },
+    {
+      "label": "Według roku urodzenia",
+      "value": "born"
+    },
+    {
+      "label": "Według roku śmierci",
+      "value": "died"
+    }]
+}

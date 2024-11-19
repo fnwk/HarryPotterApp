@@ -1,7 +1,6 @@
 import { Tabs } from "expo-router";
 import React from "react";
 
-import { TabBarIcon } from "@/components/navigation/TabBarIcon";
 import HouseHeader from "@/components/HouseHeader";
 import useColor from "@/utils/hooks/useColor";
 import { Icon } from "@/assets/Icon";
@@ -16,6 +15,7 @@ export default function TabLayout() {
       <Tabs
         screenOptions={{
           tabBarStyle: {
+            position: "absolute",
             borderTopWidth: 0,
             width: 212,
             marginHorizontal: "auto",
@@ -28,6 +28,8 @@ export default function TabLayout() {
             height: 64,
             flexDirection: "row",
             alignItems: "center",
+            left: "50%",
+            transform: [{ translateX: -106 }],
           },
           tabBarActiveTintColor: "#000",
           headerShown: false,

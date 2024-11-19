@@ -1,17 +1,17 @@
 import { create } from "zustand";
-import { HogwartsHouse, Theme } from "@/models/theme";
+import { HogwartsHouse, ThemeModel } from "@/models/theme.model";
 
 interface IThemeStore {
-  theme: Theme;
+  theme: ThemeModel;
   hogwartsTheme: HogwartsHouse | undefined;
-  setTheme: (theme: Theme) => void;
+  setTheme: (theme: ThemeModel) => void;
   setHogwartsTheme: (hogwartsTheme: HogwartsHouse) => void;
 }
 
 const useThemeStore = create<IThemeStore>((set) => ({
   theme: "light",
   hogwartsTheme: undefined,
-  setTheme: (theme: Theme) => set({ theme }),
+  setTheme: (theme: ThemeModel) => set({ theme }),
   setHogwartsTheme: (hogwartsTheme: HogwartsHouse) => set({ hogwartsTheme }),
 }));
 

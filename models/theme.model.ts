@@ -3,6 +3,7 @@ import { vars } from "nativewind";
 export interface Colors {
   primary: string;
   background: string;
+  loading: string;
   alpha: string;
   beta: string;
   gamma: string;
@@ -15,7 +16,7 @@ export interface HouseThemes {
   dark: Colors;
 }
 
-export type Theme = keyof HouseThemes;
+export type ThemeModel = keyof HouseThemes;
 
 export interface HogwartsHouses {
   gryffindor: HouseThemes;

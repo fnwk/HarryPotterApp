@@ -1,5 +1,5 @@
 import { TouchableOpacity, View } from "react-native";
-import { HogwartsHouse } from "@/models/theme";
+import { HogwartsHouse } from "@/models/theme.model";
 import { Icon } from "@/assets/Icon";
 import ThemedText from "@/components/common/ThemedText";
 import capitalizeFirstLetter from "@/utils/capitalizeFirstLetter";

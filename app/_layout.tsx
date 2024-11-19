@@ -15,10 +15,12 @@ import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
 import ThemeProvider from "@/components/common/ThemeProvider";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { colorScheme } from "nativewind";
 import useThemeStore from "@/stores/theme";
 import cn from "@/utils/cn";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
 SplashScreen.preventAutoHideAsync();
+const queryClient = new QueryClient();
 
 export default function RootLayout() {
   const hogwartsTheme = useThemeStore((state) => state.hogwartsTheme);
@@ -41,20 +43,25 @@ export default function RootLayout() {
   }
 
   return (
-    <ThemeProvider>
-      <SafeAreaView
-        edges={["top"]}
-        className={cn("flex-1", hogwartsTheme ? "bg-primary" : "bg-background")}
-      >
-        <Stack
-          initialRouteName={"chooseHouse"}
-          screenOptions={{ headerShown: false }}
+    <QueryClientProvider client={queryClient}>
+      <ThemeProvider>
+        <SafeAreaView
+          edges={["top"]}
+          className={cn(
+            "flex-1",
+            hogwartsTheme ? "bg-primary" : "bg-background",
+          )}
         >
-          <Stack.Screen name="(tabs)" />
-          <Stack.Screen name="chooseHouse" />
-          <Stack.Screen name="+not-found" />
-        </Stack>
-      </SafeAreaView>
-    </ThemeProvider>
+          <Stack
+            initialRouteName={"chooseHouse"}
+            screenOptions={{ headerShown: false }}
+          >
+            <Stack.Screen name="(tabs)" />
+            <Stack.Screen name="chooseHouse" />
+            <Stack.Screen name="+not-found" />
+          </Stack>
+        </SafeAreaView>
+      </ThemeProvider>
+    </QueryClientProvider>
   );
 }

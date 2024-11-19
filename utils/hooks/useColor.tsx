@@ -1,4 +1,4 @@
-import { Color } from "@/models/theme";
+import { Color } from "@/models/theme.model";
 import useThemeStore from "@/stores/theme";
 import { colors } from "@/utils/themes";
 

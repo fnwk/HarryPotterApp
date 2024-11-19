@@ -4,7 +4,8 @@ import {
   Color,
   HogwartsHouses,
   TransformedHogwartsColors,
-} from "@/models/theme";
+} from "@/models/theme.model";
+import config from "../tailwind.config";
 
 type TransformedTheme = {
   [key: `--color-${string}`]: string;
@@ -15,6 +16,7 @@ export const colors: HogwartsHouses = {
     light: {
       primary: "#EF233C",
       background: "#EDF2F4",
+      loading: "#F6F0F0",
       alpha: "#fff",
       beta: "#2B2D42",
       gamma: "#fff",
@@ -22,6 +24,7 @@ export const colors: HogwartsHouses = {
     dark: {
       primary: "#EF233C",
       background: "#2B2D42",
+      loading: "#33354D",
       alpha: "#2B2D42",
       beta: "#fff",
       gamma: "#1B1C2A",
@@ -31,6 +34,7 @@ export const colors: HogwartsHouses = {
     light: {
       primary: "#FFC300",
       background: "#EDF2F4",
+      loading: "#F6F0F0",
       alpha: "#fff",
       beta: "#2B2D42",
       gamma: "#fff",
@@ -38,6 +42,7 @@ export const colors: HogwartsHouses = {
     dark: {
       primary: "#FFC300",
       background: "#2B2D42",
+      loading: "#33354D",
       alpha: "#2B2D42",
       beta: "#fff",
       gamma: "#1B1C2A",
@@ -47,6 +52,7 @@ export const colors: HogwartsHouses = {
     light: {
       primary: "#006AFF",
       background: "#EDF2F4",
+      loading: "#F6F0F0",
       alpha: "#fff",
       beta: "#2B2D42",
       gamma: "#fff",
@@ -54,6 +60,7 @@ export const colors: HogwartsHouses = {
     dark: {
       primary: "#006AFF",
       background: "#2B2D42",
+      loading: "#33354D",
       alpha: "#2B2D42",
       beta: "#fff",
       gamma: "#1B1C2A",
@@ -63,6 +70,7 @@ export const colors: HogwartsHouses = {
     light: {
       primary: "#38B000",
       background: "#EDF2F4",
+      loading: "#F6F0F0",
       alpha: "#fff",
       beta: "#2B2D42",
       gamma: "#fff",
@@ -70,6 +78,7 @@ export const colors: HogwartsHouses = {
     dark: {
       primary: "#38B000",
       background: "#2B2D42",
+      loading: "#33354D",
       alpha: "#2B2D42",
       beta: "#fff",
       gamma: "#1B1C2A",
@@ -97,5 +106,7 @@ function transformColors(input: HogwartsHouses): TransformedHogwartsColors {
 
   return output;
 }
+
+export const tailwindColors = config.theme.extend.colors;
 
 export const themes = transformColors(colors);

@@ -1,13 +1,13 @@
-import { FlatList, Text, View } from "react-native";
 import { useT } from "@/i18n/useTranslation";
 import Container from "@/components/common/Container";
+import { FlatList, View } from "react-native";
 import OptionsDropdown from "@/components/common/OptionsDropdown";
 import { changeLanguage } from "@/i18n/changeLanguage";
 import useThemeStore from "@/stores/theme";
 import ThemedText from "@/components/common/ThemedText";
 import { AppLanguage } from "@/i18n/language";
 import HouseBtn from "@/components/HouseBtn";
-import { HogwartsHouse } from "@/models/theme";
+import { HogwartsHouse } from "@/models/theme.model";
 
 const ChooseHouseScreen = () => {
   const { t, i18n } = useT();
@@ -23,7 +23,7 @@ const ChooseHouseScreen = () => {
 
   return (
     <Container>
-      <ThemedText className={"font-bold text-xl"}>
+      <ThemedText className={"font-bold text-xl mt-4"}>
         {t("houses:hello")},
       </ThemedText>
       <ThemedText className={"font-medium text-xl"}>
@@ -50,6 +50,7 @@ const ChooseHouseScreen = () => {
       </View>
       <FlatList
         data={t("houses:houses", { returnObjects: true }) as HogwartsHouse[]}
+        keyExtractor={(item) => item}
         renderItem={({ item }) => <HouseBtn name={item} />}
       />
     </Container>
