@@ -1,7 +1,7 @@
 import { PropsWithChildren, ReactElement, useEffect, useState } from "react";
 import { LayoutRectangle, StyleSheet, View } from "react-native";
 import MaskedView from "@react-native-masked-view/masked-view";
-import Reanimated, {
+import Animated, {
   interpolate,
   useAnimatedStyle,
   useSharedValue,
@@ -55,7 +55,7 @@ const SkeletonContainer = ({
       style={{ width: layout.width, height: layout.height }}
     >
       <View className={"flex-1 flex-grow overflow-hidden bg-gamma"} />
-      <Reanimated.View style={[StyleSheet.absoluteFill, animatedStyle]}>
+      <Animated.View style={[StyleSheet.absoluteFill, animatedStyle]}>
         <MaskedView
           style={StyleSheet.absoluteFill}
           maskElement={
@@ -69,7 +69,7 @@ const SkeletonContainer = ({
         >
           <View className={"flex-1 flex-grow overflow-hidden bg-loading"} />
         </MaskedView>
-      </Reanimated.View>
+      </Animated.View>
     </MaskedView>
   );
 };

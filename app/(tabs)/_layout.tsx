@@ -13,6 +13,8 @@ export default function TabLayout() {
     <View className={"bg-background flex-1"}>
       <HouseHeader />
       <Tabs
+        initialRouteName={"index"}
+        backBehavior="history"
         screenOptions={{
           tabBarStyle: {
             position: "absolute",
@@ -60,6 +62,7 @@ export default function TabLayout() {
             ),
           }}
         />
+        <Tabs.Screen name="character/[id]" options={{ href: null }} />
         <Tabs.Screen
           name="games2"
           options={{

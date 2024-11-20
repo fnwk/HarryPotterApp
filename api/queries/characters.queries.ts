@@ -1,4 +1,4 @@
-import { useInfiniteQuery } from "@tanstack/react-query";
+import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import { CharactersApi } from "@/api/requests/characters.req";
 import { HogwartsHouse } from "@/models/theme.model";
 
@@ -10,6 +10,7 @@ interface getCharactersProps {
 
 export const charactersKeys = {
   charactersList: ["characters-list"],
+  characterDetails: ["character-details"],
 };
 
 export const useGetCharacters = ({
@@ -27,4 +28,10 @@ export const useGetCharacters = ({
         return lastPage.meta.pagination.current + 1;
       }
     },
+  });
+
+export const useGetCharacterDetails = (id: string) =>
+  useQuery({
+    queryKey: [...charactersKeys.characterDetails, id],
+    queryFn: () => CharactersApi.getCharacterDetails(id),
   });

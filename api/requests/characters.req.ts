@@ -15,4 +15,9 @@ export namespace CharactersApi {
     );
     return res.data;
   };
+
+  export const getCharacterDetails = async (id: string) => {
+    const res = await apiClient.get(`characters/${id}`);
+    return res.data;
+  };
 }
