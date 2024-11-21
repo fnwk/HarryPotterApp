@@ -3,15 +3,22 @@ import Container from "@/components/common/Container";
 import { FlatList, View } from "react-native";
 import OptionsDropdown from "@/components/common/OptionsDropdown";
 import { changeLanguage } from "@/i18n/changeLanguage";
-import useThemeStore from "@/stores/theme";
+import useThemeStore from "@/stores/theme.store";
 import ThemedText from "@/components/common/ThemedText";
 import { AppLanguage } from "@/i18n/language";
 import HouseBtn from "@/components/HouseBtn";
 import { HogwartsHouse } from "@/models/theme.model";
+import { useLayoutEffect } from "react";
 
 const ChooseHouseScreen = () => {
   const { t, i18n } = useT();
-  const { theme, setTheme } = useThemeStore((state) => state);
+  const { theme, setTheme, setThemedBoundaries } = useThemeStore(
+    (state) => state,
+  );
+
+  useLayoutEffect(() => {
+    setThemedBoundaries(false);
+  }, []);
 
   const handleLanguageChange = (value: string) => {
     changeLanguage(value as AppLanguage);

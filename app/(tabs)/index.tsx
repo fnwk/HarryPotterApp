@@ -1,5 +1,5 @@
 import i18n from "i18next";
-import useThemeStore from "@/stores/theme";
+import useThemeStore from "@/stores/theme.store";
 import { Redirect } from "expo-router";
 import Container from "@/components/common/Container";
 import ThemedText from "@/components/common/ThemedText";
@@ -14,7 +14,7 @@ import { useGetCharacters } from "@/api/queries/characters.queries";
 import SkeletonContainer from "@/components/SkeletonContainer";
 import CharacterCard from "@/components/CharacterCard";
 import ThemedTextInput from "@/components/common/ThemedTextInput";
-import { useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import capitalizeFirstLetter from "@/utils/capitalizeFirstLetter";
 import { HogwartsHouse } from "@/models/theme.model";
 
@@ -24,7 +24,9 @@ export default function HomeScreen() {
   const sortingOptions = t("home:sortingOptions", {
     returnObjects: true,
   }) as DropdownOption[];
-  const hogwartsTheme = useThemeStore((state) => state.hogwartsTheme);
+  const { hogwartsTheme, setThemedBoundaries } = useThemeStore(
+    (state) => state,
+  );
 
   const [searchQuery, setSearchQuery] = useState("");
   const [house, setHouse] = useState<HogwartsHouse | "">("");
@@ -36,6 +38,12 @@ export default function HomeScreen() {
   if (!hogwartsTheme) {
     return <Redirect href={"/chooseHouse"} />;
   }
+
+  useLayoutEffect(() => {
+    setTimeout(() => {
+      setThemedBoundaries(true);
+    }, 0);
+  }, []);
 
   const handleLanguageChange = (value: string) => {
     changeLanguage(value as AppLanguage);

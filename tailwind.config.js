@@ -25,6 +25,7 @@ const config = {
         beta: "var(--color-beta)",
         gamma: "var(--color-gamma)",
         input: "#8D99AE",
+        pinkyRed: "#fa2770",
       },
     },
   },

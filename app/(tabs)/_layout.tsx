@@ -64,11 +64,11 @@ export default function TabLayout() {
         />
         <Tabs.Screen name="character/[id]" options={{ href: null }} />
         <Tabs.Screen
-          name="games2"
+          name="favorites"
           options={{
             tabBarIcon: ({ color, focused }) => (
               <View className={"w-[64]  h-[64] items-center justify-center"}>
-                <Icon name={"rect"} />
+                <Icon name={"heart"} />
               </View>
             ),
           }}

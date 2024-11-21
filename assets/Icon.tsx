@@ -15,6 +15,7 @@ import gryffindor from "./icons/gryffindor.svg";
 import ravenclaw from "./icons/ravenclaw.svg";
 import sort from "./icons/sort.svg";
 import moon from "./icons/moon.svg";
+import heart from "./icons/heart.svg";
 import slytherin from "./icons/slytherin.svg";
 
 const ICONS = {
@@ -32,6 +33,7 @@ const ICONS = {
   ravenclaw,
   sort,
   moon,
+  heart,
   slytherin,
 };
 
@@ -51,7 +53,7 @@ const AppIcon = ({ name, noStroke, fillDefault, ...props }: IconProps) => {
   return (
     <CurrentIcon
       {...props}
-      stroke={noStroke ? "none" : color}
+      stroke={props.stroke || (noStroke ? "none" : color)}
       fill={fillDefault ? color : "none"}
     />
   );

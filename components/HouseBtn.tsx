@@ -5,14 +5,14 @@ import ThemedText from "@/components/common/ThemedText";
 import capitalizeFirstLetter from "@/utils/capitalizeFirstLetter";
 import { colors } from "@/utils/themes";
 import { router } from "expo-router";
-import useThemeStore from "@/stores/theme";
+import useThemeStore from "@/stores/theme.store";
 
 interface HouseBtnProps {
   name: HogwartsHouse;
 }
 
 const HouseBtn = ({ name }: HouseBtnProps) => {
-  const setHogwartsTheme = useThemeStore((state) => state.setHogwartsTheme);
+  const { setHogwartsTheme } = useThemeStore((state) => state);
 
   const handlePress = () => {
     setHogwartsTheme(name);

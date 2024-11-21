@@ -15,7 +15,7 @@ import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
 import ThemeProvider from "@/components/common/ThemeProvider";
 import { SafeAreaView } from "react-native-safe-area-context";
-import useThemeStore from "@/stores/theme";
+import useThemeStore from "@/stores/theme.store";
 import cn from "@/utils/cn";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
@@ -23,7 +23,7 @@ SplashScreen.preventAutoHideAsync();
 const queryClient = new QueryClient();
 
 export default function RootLayout() {
-  const hogwartsTheme = useThemeStore((state) => state.hogwartsTheme);
+  const themedBoundaries = useThemeStore((state) => state.themedBoundaries);
   const [loaded] = useFonts({
     interRegular: Inter_400Regular,
     interMedium: Inter_500Medium,
@@ -49,7 +49,7 @@ export default function RootLayout() {
           edges={["top"]}
           className={cn(
             "flex-1",
-            hogwartsTheme ? "bg-primary" : "bg-background",
+            themedBoundaries ? "bg-primary" : "bg-background",
           )}
         >
           <Stack

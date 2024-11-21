@@ -1,7 +1,7 @@
 import { PropsWithChildren } from "react";
 import { View } from "react-native";
 import { themes } from "@/utils/themes";
-import useThemeStore from "@/stores/theme";
+import useThemeStore from "@/stores/theme.store";
 
 const ThemeProvider = ({ children }: PropsWithChildren) => {
   const { theme, hogwartsTheme } = useThemeStore((state) => state);

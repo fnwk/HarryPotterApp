@@ -1,5 +1,5 @@
 import { Color } from "@/models/theme.model";
-import useThemeStore from "@/stores/theme";
+import useThemeStore from "@/stores/theme.store";
 import { colors } from "@/utils/themes";
 
 const useColor = (color: Color) => {
