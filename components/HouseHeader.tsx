@@ -2,9 +2,10 @@ import { Icon } from "@/assets/Icon";
 import useThemeStore from "@/stores/theme.store";
 import { Pressable, View } from "react-native";
 import { router } from "expo-router";
+import cn from "@/utils/cn";
 
 const HouseHeader = () => {
-  const { hogwartsTheme, setThemedBoundaries } = useThemeStore(
+  const { hogwartsTheme, setThemedBoundaries, roundedHeader } = useThemeStore(
     (state) => state,
   );
 
@@ -15,7 +16,12 @@ const HouseHeader = () => {
 
   return (
     <Pressable onPress={handlePress}>
-      <View className={"bg-primary py-6 items-center rounded-b-3xl"}>
+      <View
+        className={cn(
+          "bg-primary py-6 items-center",
+          roundedHeader && "rounded-b-3xl",
+        )}
+      >
         <Icon name={hogwartsTheme ?? "gryffindor"} noStroke />
       </View>
     </Pressable>

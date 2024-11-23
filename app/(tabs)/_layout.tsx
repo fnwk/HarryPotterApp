@@ -39,11 +39,11 @@ export default function TabLayout() {
         }}
       >
         <Tabs.Screen
-          name="games"
+          name="menu/index"
           options={{
             tabBarIcon: ({ color, focused }) => (
               <View className={"w-[64]  h-[64] items-center justify-center"}>
-                <Icon name={"rect"} />
+                <Icon name={"grid"} />
               </View>
             ),
           }}
@@ -72,6 +72,10 @@ export default function TabLayout() {
               </View>
             ),
           }}
+        />
+        <Tabs.Screen
+          name={"menu/HouseQuiz"}
+          options={{ href: null, unmountOnBlur: true }}
         />
       </Tabs>
     </View>

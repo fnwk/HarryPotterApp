@@ -2,13 +2,16 @@ import React from "react";
 import { SvgProps } from "react-native-svg";
 import useColor from "@/utils/hooks/useColor";
 import rect from "./icons/rect.svg";
+import grid from "./icons/grid.svg";
 import search from "./icons/search.svg";
 import arrow2 from "./icons/arrow2.svg";
 import arrow from "./icons/arrow.svg";
 import home from "./icons/home.svg";
 import en from "./icons/en.svg";
 import pl from "./icons/pl.svg";
+import check from "./icons/check.svg";
 import lang from "./icons/lang.svg";
+import favorites from "./icons/favorites.svg";
 import hufflepuff from "./icons/hufflepuff.svg";
 import sun from "./icons/sun.svg";
 import gryffindor from "./icons/gryffindor.svg";
@@ -20,13 +23,16 @@ import slytherin from "./icons/slytherin.svg";
 
 const ICONS = {
   rect,
+  grid,
   search,
   arrow2,
   arrow,
   home,
   en,
   pl,
+  check,
   lang,
+  favorites,
   hufflepuff,
   sun,
   gryffindor,
@@ -53,7 +59,7 @@ const AppIcon = ({ name, noStroke, fillDefault, ...props }: IconProps) => {
   return (
     <CurrentIcon
       {...props}
-      stroke={props.stroke || (noStroke ? "none" : color)}
+      stroke={noStroke ? "none" : color}
       fill={fillDefault ? color : "none"}
     />
   );

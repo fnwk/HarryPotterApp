@@ -26,6 +26,7 @@ const config = {
         gamma: "var(--color-gamma)",
         input: "#8D99AE",
         pinkyRed: "#fa2770",
+        dark: "#2B2D42",
       },
     },
   },

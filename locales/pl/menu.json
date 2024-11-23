@@ -1,0 +1,9 @@
+{
+  "houseQuiz": {
+    "title": "Jak dobrze znasz {{house}}?",
+    "label": "Quiz",
+    "quizResults" : "Twój wynik to:",
+    "generatingQuiz": "Generowanie quizu..."
+
+  }
+}

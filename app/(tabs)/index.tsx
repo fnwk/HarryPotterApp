@@ -35,9 +35,9 @@ export default function HomeScreen() {
   const { data, isFetchingNextPage, isLoading, fetchNextPage } =
     useGetCharacters({ searchQuery, house, sorting });
 
-  if (!hogwartsTheme) {
-    return <Redirect href={"/chooseHouse"} />;
-  }
+  // if (!hogwartsTheme) {
+  //   return <Redirect href={"/chooseHouse"} />;
+  // }
 
   useLayoutEffect(() => {
     setTimeout(() => {

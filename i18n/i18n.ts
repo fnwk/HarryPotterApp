@@ -6,12 +6,14 @@ import housesPL from "@/locales/pl/houses.json";
 import homePL from "@/locales/pl/home.json";
 import characterPL from "@/locales/pl/character.json";
 import favoritesPL from "@/locales/pl/favorites.json";
+import menuPL from "@/locales/pl/menu.json";
 
 import commonEN from "@/locales/en/common.json";
 import housesEN from "@/locales/en/houses.json";
 import homeEN from "@/locales/en/home.json";
 import characterEN from "@/locales/en/character.json";
 import favoritesEN from "@/locales/en/favorites.json";
+import menuEN from "@/locales/en/menu.json";
 
 export const resources = {
   pl: {
@@ -20,6 +22,7 @@ export const resources = {
     home: homePL,
     character: characterPL,
     favorites: favoritesPL,
+    menu: menuPL,
   },
   en: {
     common: commonEN,
@@ -27,6 +30,7 @@ export const resources = {
     home: homeEN,
     character: characterEN,
     favorites: favoritesEN,
+    menu: menuEN,
   },
 };
 
