@@ -4,6 +4,13 @@
     "label": "Quiz",
     "quizResults" : "Twój wynik to:",
     "generatingQuiz": "Generowanie quizu..."
-
+  },
+  "headsUp": {
+    "title": "Zgadnij postać",
+    "label": "Gra w czółko",
+    "good": "Dobrze",
+    "fold": "Pasuję",
+    "howToPlay": "Przechyl telefon, aby podjąć decyzję! Twarzą w dół, jeśli wygrałeś, twarzą w górę, jeśli nie zgadłeś postaci.",
+    "start": "Przyłóż telefon do czoła"
   }
 }

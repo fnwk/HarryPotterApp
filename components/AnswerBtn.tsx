@@ -24,12 +24,13 @@ const AnswerBtn = ({
         className={cn(
           "flex-row rounded-full p-3 items-center my-3",
           isGoodAnswer
-            ? "bg-green-400"
+            ? "bg-green"
             : selected
               ? isGoodAnswer === false
-                ? "bg-red-400"
+                ? "bg-red"
                 : "bg-dark"
               : "bg-white",
+          className,
         )}
       >
         <View

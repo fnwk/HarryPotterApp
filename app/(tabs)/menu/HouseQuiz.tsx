@@ -1,4 +1,5 @@
-import { ScrollView, Text, useWindowDimensions, View } from "react-native";
+import React from "react";
+import { ScrollView, Text, View } from "react-native";
 import useThemeStore from "@/stores/theme.store";
 import { useEffect, useState } from "react";
 import Container from "@/components/common/Container";
@@ -11,13 +12,14 @@ import capitalizeFirstLetter from "@/utils/capitalizeFirstLetter";
 import { router } from "expo-router";
 import { QuizQuestions } from "@/models/quiz.model";
 import useQuizStore from "@/stores/quiz.store";
+import { useIsFocused } from "@react-navigation/core";
 
 const houseQuiz = () => {
   const { t } = useT();
-  const dimensions = useWindowDimensions();
   const { setRoundedHeader, hogwartsTheme } = useThemeStore((state) => state);
-  const { addToUsedQuestions, changeId } = useQuizStore((state) => state);
+  const { addToUsedQuestions } = useQuizStore((state) => state);
   const { data, isLoading, isPending } = useGetQuizQuestions();
+  const isFocused = useIsFocused();
 
   const [questions, setQuestions] = useState<QuizQuestions>([]);
   const [questionNum, setQuestionNum] = useState(1);
@@ -26,13 +28,12 @@ const houseQuiz = () => {
   const [numOfCorrectAnswers, setNumOfCorrectAnswers] = useState(0);
 
   useEffect(() => {
-    setRoundedHeader(false);
-    changeId();
-
-    return () => {
+    if (isFocused) {
+      setRoundedHeader(false);
+    } else {
       setRoundedHeader(true);
-    };
-  }, []);
+    }
+  }, [isFocused]);
 
   useEffect(() => {
     if (data) {
@@ -41,6 +42,8 @@ const houseQuiz = () => {
   }, [data]);
 
   const handleCheck = () => {
+    if (selectedAnswer === undefined) return;
+
     setShowAnswer(true);
     if (selectedAnswer === questions[questionNum - 1].correct) {
       setNumOfCorrectAnswers((prev) => prev + 1);
@@ -56,16 +59,12 @@ const houseQuiz = () => {
       setQuestionNum(1);
       setNumOfCorrectAnswers(0);
       addToUsedQuestions(questions.map((question) => question.question));
-      changeId();
       router.back();
     }
   };
 
   return (
-    <View
-      style={{ height: dimensions.height - 275 }}
-      className={"bg-primary rounded-b-3xl overflow-hidden"}
-    >
+    <View className={"bg-primary h-full"}>
       <Container className={"flex-1 bg-primary w-full"}>
         <Text className={"text-white text-md font-semibold"}>
           {t("menu:houseQuiz.title", {
@@ -78,9 +77,10 @@ const houseQuiz = () => {
             {questionNum > 5 ? 5 : questionNum} of 5
           </Text>
         </View>
-        <View className={"flex-row justify-between mt-3"}>
+        <View className={"flex-row justify-between mt-3  pb-2"}>
           {[...Array(5)].map((_, index) => (
             <View
+              key={index}
               className={cn(
                 "w-[18%] h-[10px] rounded-full border border-white",
                 index + 1 <= questionNum && "bg-white",
@@ -95,7 +95,7 @@ const houseQuiz = () => {
             {t("menu:houseQuiz.generatingQuiz")}
           </Text>
         ) : (
-          <ScrollView>
+          <ScrollView contentContainerStyle={{ paddingBottom: 200 }}>
             {!isLoading && !isPending && (
               <Text className={"text-white text-3xl font-medium my-10"}>
                 {questions[questionNum - 1]?.question || ""}
@@ -118,6 +118,7 @@ const houseQuiz = () => {
               ) : (
                 questions[questionNum - 1]?.answers?.map((answer, index) => (
                   <AnswerBtn
+                    key={index}
                     selected={selectedAnswer === index}
                     index={index}
                     answer={answer}

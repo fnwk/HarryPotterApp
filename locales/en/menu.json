@@ -4,5 +4,13 @@
     "label": "Quiz",
     "quizResults" : "Your result is:",
     "generatingQuiz": "Generating quiz..."
+  },
+  "headsUp": {
+    "title": "Guess the character",
+    "label": "Heads up game",
+    "good": "Good",
+    "fold": "Fold",
+    "howToPlay": "Tilt your phone to make a decision! Face down if you won, face up if you didn't guess the character.",
+    "start": "Put the phone to your forehead"
   }
 }

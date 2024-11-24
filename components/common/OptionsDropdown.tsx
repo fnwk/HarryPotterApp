@@ -19,6 +19,7 @@ interface OptionDropdownProps {
   noIcons?: boolean;
   showBg?: boolean;
   onChange: (value: string) => void;
+  zIndex?: number;
 }
 
 const OptionsDropdown = ({
@@ -30,6 +31,7 @@ const OptionsDropdown = ({
   noIcons,
   showBg,
   onChange,
+  zIndex,
 }: OptionDropdownProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [layout, setLayout] = useState<LayoutRectangle>();
@@ -41,14 +43,16 @@ const OptionsDropdown = ({
 
   return (
     <View
+      style={{ zIndex: zIndex || 50 }}
       onLayout={(event) => setLayout(event.nativeEvent.layout)}
       className={cn(
         (isOpen || showBg) && "bg-gamma rounded-lg",
-        "p-3 mt-3 mr-2 relative z-50",
+        "p-3 mt-3 mr-2 relative",
       )}
     >
       <TouchableOpacity
-        className={"flex-row items-center z-50"}
+        style={{ zIndex: zIndex || 50 }}
+        className={"flex-row items-center "}
         onPress={() => setIsOpen((prev) => !prev)}
       >
         {!noIcons && (
@@ -80,8 +84,8 @@ const OptionsDropdown = ({
       </TouchableOpacity>
       {isOpen && (
         <View
-          style={{ width: layout?.width }}
-          className={cn("absolute top-full bg-gamma p-3 rounded-b-xl z-40")}
+          style={{ width: layout?.width, zIndex: zIndex ? zIndex - 10 : 40 }}
+          className={cn("absolute top-[20px] bg-gamma p-3 rounded-b-xl")}
         >
           {options
             .filter((opt) => opt.value !== value)

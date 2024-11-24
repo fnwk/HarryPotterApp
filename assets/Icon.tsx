@@ -17,6 +17,7 @@ import sun from "./icons/sun.svg";
 import gryffindor from "./icons/gryffindor.svg";
 import ravenclaw from "./icons/ravenclaw.svg";
 import sort from "./icons/sort.svg";
+import head from "./icons/head.svg";
 import moon from "./icons/moon.svg";
 import heart from "./icons/heart.svg";
 import slytherin from "./icons/slytherin.svg";
@@ -38,6 +39,7 @@ const ICONS = {
   gryffindor,
   ravenclaw,
   sort,
+  head,
   moon,
   heart,
   slytherin,
@@ -50,17 +52,26 @@ interface IconProps extends SvgProps {
   noStroke?: boolean;
   fillDefault?: boolean;
   className?: string;
+  stroke?: string;
+  fill?: string;
 }
 
-const AppIcon = ({ name, noStroke, fillDefault, ...props }: IconProps) => {
+const AppIcon = ({
+  name,
+  noStroke,
+  stroke,
+  fill,
+  fillDefault,
+  ...props
+}: IconProps) => {
   const CurrentIcon = ICONS[name];
   const color = useColor("beta");
 
   return (
     <CurrentIcon
       {...props}
-      stroke={noStroke ? "none" : color}
-      fill={fillDefault ? color : "none"}
+      stroke={noStroke ? "none" : stroke || color}
+      fill={fillDefault ? fill || color : "none"}
     />
   );
 };

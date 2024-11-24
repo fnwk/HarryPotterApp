@@ -5,28 +5,31 @@ import { useT } from "@/i18n/useTranslation";
 import { router } from "expo-router";
 import useThemeStore from "@/stores/theme.store";
 import capitalizeFirstLetter from "@/utils/capitalizeFirstLetter";
-import { useMemo } from "react";
-import i18n from "i18next";
 
 const MenuScreen = () => {
   const { t } = useT("menu");
-  const { hogwartsTheme, setRoundedHeader } = useThemeStore();
+  const { hogwartsTheme } = useThemeStore();
 
-  const MenuItems: IMenuItem[] = useMemo(() => {
-    if (!hogwartsTheme) return [];
-
-    return [
-      {
-        bgColor: "bg-primary",
-        icon: hogwartsTheme,
-        label: t("houseQuiz.label"),
-        title: t("menu:houseQuiz.title", {
-          house: capitalizeFirstLetter(hogwartsTheme || ""),
-        }),
-        onPress: () => router.push("/menu/HouseQuiz"),
-      },
-    ];
-  }, [hogwartsTheme, i18n.language]);
+  const MenuItems: IMenuItem[] = [
+    {
+      bgColor: "bg-primary",
+      icon: hogwartsTheme || "rect",
+      label: t("houseQuiz.label"),
+      title: t("houseQuiz.title", {
+        house: capitalizeFirstLetter(hogwartsTheme || ""),
+      }),
+      onPress: () => router.push("/menu/HouseQuiz"),
+    },
+    {
+      bgColor: "bg-purple-500",
+      icon: "head",
+      label: t("headsUp.label"),
+      title: t("headsUp.title", {
+        house: capitalizeFirstLetter(hogwartsTheme || ""),
+      }),
+      onPress: () => router.push("/menu/HeadsUp"),
+    },
+  ];
 
   return (
     <Container className={"pt-6"}>

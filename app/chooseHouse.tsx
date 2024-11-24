@@ -9,6 +9,8 @@ import { AppLanguage } from "@/i18n/language";
 import HouseBtn from "@/components/HouseBtn";
 import { HogwartsHouse } from "@/models/theme.model";
 import { useLayoutEffect } from "react";
+import useOrientation from "@/utils/hooks/useOrientation";
+import { OrientationLock } from "expo-screen-orientation";
 
 const ChooseHouseScreen = () => {
   const { t, i18n } = useT();

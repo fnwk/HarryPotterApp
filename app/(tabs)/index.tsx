@@ -17,6 +17,8 @@ import ThemedTextInput from "@/components/common/ThemedTextInput";
 import { useEffect, useLayoutEffect, useState } from "react";
 import capitalizeFirstLetter from "@/utils/capitalizeFirstLetter";
 import { HogwartsHouse } from "@/models/theme.model";
+import useOrientation from "@/utils/hooks/useOrientation";
+import { OrientationLock } from "expo-screen-orientation";
 
 export default function HomeScreen() {
   const { t } = useT();
@@ -24,9 +26,7 @@ export default function HomeScreen() {
   const sortingOptions = t("home:sortingOptions", {
     returnObjects: true,
   }) as DropdownOption[];
-  const { hogwartsTheme, setThemedBoundaries } = useThemeStore(
-    (state) => state,
-  );
+  const { setThemedBoundaries } = useThemeStore((state) => state);
 
   const [searchQuery, setSearchQuery] = useState("");
   const [house, setHouse] = useState<HogwartsHouse | "">("");
@@ -34,10 +34,6 @@ export default function HomeScreen() {
 
   const { data, isFetchingNextPage, isLoading, fetchNextPage } =
     useGetCharacters({ searchQuery, house, sorting });
-
-  // if (!hogwartsTheme) {
-  //   return <Redirect href={"/chooseHouse"} />;
-  // }
 
   useLayoutEffect(() => {
     setTimeout(() => {
@@ -89,8 +85,13 @@ export default function HomeScreen() {
               className={"mt-8"}
               onChangeText={setSearchQuery}
             />
-            <View className={"flex-row"}>
+
+            <View
+              className={"flex-row flex-wrap"}
+              style={{ overflow: "visible" }}
+            >
               <OptionsDropdown
+                zIndex={60}
                 showBg
                 inputColor
                 value={sorting}
@@ -99,6 +100,7 @@ export default function HomeScreen() {
                 onChange={handleSortingChange}
               />
               <OptionsDropdown
+                zIndex={50}
                 showBg
                 noIcons
                 inputColor

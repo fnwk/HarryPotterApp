@@ -4,6 +4,8 @@ import CharacterCard from "@/components/CharacterCard";
 import useFavoritesStore from "@/stores/favorites.store";
 import ThemedText from "@/components/common/ThemedText";
 import { useT } from "@/i18n/useTranslation";
+import useOrientation from "@/utils/hooks/useOrientation";
+import { OrientationLock } from "expo-screen-orientation";
 
 const FavoritesScreen = () => {
   const { t } = useT("favorites");
@@ -22,6 +24,9 @@ const FavoritesScreen = () => {
           <CharacterCard id={item.id} attributes={item.attributes} />
         )}
         keyExtractor={(item, idx) => (item ? item.id : idx.toString())}
+        ListEmptyComponent={() => (
+          <ThemedText className={"text-lg"}>{t("empty")}</ThemedText>
+        )}
       />
     </Container>
   );

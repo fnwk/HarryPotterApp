@@ -3,14 +3,6 @@ import "../global.css";
 
 import "react-native-reanimated";
 import { Stack } from "expo-router";
-import {
-  useFonts,
-  Inter_400Regular,
-  Inter_500Medium,
-  Inter_600SemiBold,
-  Inter_700Bold,
-  Inter_900Black,
-} from "@expo-google-fonts/inter";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
 import ThemeProvider from "@/components/common/ThemeProvider";
@@ -18,29 +10,18 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import useThemeStore from "@/stores/theme.store";
 import cn from "@/utils/cn";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 SplashScreen.preventAutoHideAsync();
 const queryClient = new QueryClient();
 
 export default function RootLayout() {
-  const themedBoundaries = useThemeStore((state) => state.themedBoundaries);
-  const [loaded] = useFonts({
-    interRegular: Inter_400Regular,
-    interMedium: Inter_500Medium,
-    interSemiBold: Inter_600SemiBold,
-    interBold: Inter_700Bold,
-    interBlack: Inter_900Black,
-  });
+  const { themedBoundaries, setHideUI } = useThemeStore((state) => state);
 
   useEffect(() => {
-    if (loaded) {
-      SplashScreen.hideAsync();
-    }
-  }, [loaded]);
-
-  if (!loaded) {
-    return null;
-  }
+    setHideUI(false);
+    SplashScreen.hideAsync();
+  }, []);
 
   return (
     <QueryClientProvider client={queryClient}>

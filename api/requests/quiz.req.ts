@@ -8,6 +8,7 @@ export namespace QuizApi {
     usedQuestions: string[],
     house: HogwartsHouse,
   ) => {
+    console.log("Wysyła");
     const res = await openaiClient.post("", {
       model: "gpt-3.5-turbo",
       messages: [
@@ -18,11 +19,14 @@ export namespace QuizApi {
       ],
     });
 
+    console.log("wysłano");
+
     console.log(
       "Pytania ->",
       res.data.choices[0].message.content,
       "Użyte pytania ->",
       usedQuestions,
+      res.data,
     );
     return res.data as { choices: { message: { content: string } }[] };
   };

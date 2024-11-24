@@ -27,6 +27,8 @@ const config = {
         input: "#8D99AE",
         pinkyRed: "#fa2770",
         dark: "#2B2D42",
+        green: "#3ab65b",
+        red: "#ca1f39",
       },
     },
   },

@@ -8,10 +8,12 @@ interface IThemeStore {
   themedBoundaries: boolean;
   hogwartsTheme: HogwartsHouse | undefined;
   roundedHeader: boolean;
+  hideUI: boolean;
   setTheme: (theme: ThemeModel) => void;
   setThemedBoundaries: (themedBoundaries: boolean) => void;
   setHogwartsTheme: (hogwartsTheme: HogwartsHouse) => void;
   setRoundedHeader: (roundedHeader: boolean) => void;
+  setHideUI: (hideUI: boolean) => void;
 }
 
 const useThemeStore = create(
@@ -21,12 +23,14 @@ const useThemeStore = create(
       themedBoundaries: false,
       hogwartsTheme: undefined,
       roundedHeader: true,
+      hideUI: false,
       setTheme: (theme: ThemeModel) => set({ theme }),
       setThemedBoundaries: (themedBoundaries: boolean) =>
         set({ themedBoundaries }),
       setHogwartsTheme: (hogwartsTheme: HogwartsHouse) =>
         set({ hogwartsTheme }),
       setRoundedHeader: (roundedHeader: boolean) => set({ roundedHeader }),
+      setHideUI: (hideUI: boolean) => set({ hideUI }),
     }),
     {
       name: "theme-storage",

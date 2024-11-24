@@ -20,4 +20,11 @@ export namespace CharactersApi {
     const res = await apiClient.get(`characters/${id}`);
     return res.data;
   };
+
+  export const getHeadsUpCharacter = async () => {
+    const res = await apiClient.get(
+      `characters?filter[house_not_null]=true&filter[hair_color_not_null]=true`,
+    );
+    return res.data;
+  };
 }

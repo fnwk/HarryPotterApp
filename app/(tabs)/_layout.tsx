@@ -1,17 +1,23 @@
-import { Tabs } from "expo-router";
+import { Redirect, Tabs } from "expo-router";
 import React from "react";
 
 import HouseHeader from "@/components/HouseHeader";
 import useColor from "@/utils/hooks/useColor";
 import { Icon } from "@/assets/Icon";
-import { View } from "react-native";
+import { useWindowDimensions, View } from "react-native";
+import useThemeStore from "@/stores/theme.store";
 
 export default function TabLayout() {
+  const dim = useWindowDimensions();
   const tabBarBackground = useColor("gamma");
+  const { hideUI, hogwartsTheme } = useThemeStore((state) => state);
 
+  if (!hogwartsTheme) {
+    return <Redirect href={"/chooseHouse"} />;
+  }
   return (
     <View className={"bg-background flex-1"}>
-      <HouseHeader />
+      {!hideUI && <HouseHeader />}
       <Tabs
         initialRouteName={"index"}
         backBehavior="history"
@@ -20,18 +26,18 @@ export default function TabLayout() {
             position: "absolute",
             borderTopWidth: 0,
             width: 212,
-            marginHorizontal: "auto",
+            alignSelf: "center",
             backgroundColor: tabBarBackground,
             borderRadius: 1000,
             marginBottom: 40,
-            paddingBottom: 0,
-            padding: 0,
+            paddingBottom: 28,
             paddingHorizontal: 10,
             height: 64,
             flexDirection: "row",
+            justifyContent: "center",
             alignItems: "center",
-            left: "50%",
-            transform: [{ translateX: -106 }],
+            marginLeft: dim.width / 2 - 106,
+            display: hideUI ? "none" : "flex",
           },
           tabBarActiveTintColor: "#000",
           headerShown: false,
@@ -42,7 +48,7 @@ export default function TabLayout() {
           name="menu/index"
           options={{
             tabBarIcon: ({ color, focused }) => (
-              <View className={"w-[64]  h-[64] items-center justify-center"}>
+              <View className={"w-[64px] h-[64px] items-center justify-center"}>
                 <Icon name={"grid"} />
               </View>
             ),
@@ -54,7 +60,7 @@ export default function TabLayout() {
             tabBarIcon: ({ color, focused }) => (
               <View
                 className={
-                  "bg-primary h-[64] w-[64] rounded-full items-center justify-center"
+                  "bg-primary h-[64px] w-[64px] rounded-full items-center justify-center"
                 }
               >
                 <Icon name={"home"} />
@@ -67,16 +73,14 @@ export default function TabLayout() {
           name="favorites"
           options={{
             tabBarIcon: ({ color, focused }) => (
-              <View className={"w-[64]  h-[64] items-center justify-center"}>
+              <View className={"w-[64px] h-[64px] items-center justify-center"}>
                 <Icon name={"heart"} />
               </View>
             ),
           }}
         />
-        <Tabs.Screen
-          name={"menu/HouseQuiz"}
-          options={{ href: null, unmountOnBlur: true }}
-        />
+        <Tabs.Screen name={"menu/HouseQuiz"} options={{ href: null }} />
+        <Tabs.Screen name={"menu/HeadsUp"} options={{ href: null }} />
       </Tabs>
     </View>
   );

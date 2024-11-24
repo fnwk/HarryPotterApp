@@ -35,3 +35,9 @@ export const useGetCharacterDetails = (id: string) =>
     queryKey: [...charactersKeys.characterDetails, id],
     queryFn: () => CharactersApi.getCharacterDetails(id),
   });
+
+export const useGetHeadsUpCharacter = () =>
+  useQuery({
+    queryKey: ["heads-up-character"],
+    queryFn: CharactersApi.getHeadsUpCharacter,
+  });

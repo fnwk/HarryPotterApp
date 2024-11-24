@@ -18,7 +18,7 @@ const HouseHeader = () => {
     <Pressable onPress={handlePress}>
       <View
         className={cn(
-          "bg-primary py-6 items-center",
+          "flex-row bg-primary h-24 items-center justify-center",
           roundedHeader && "rounded-b-3xl",
         )}
       >

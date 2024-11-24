@@ -29,7 +29,7 @@ const HouseBtn = ({ name }: HouseBtnProps) => {
       >
         <Icon name={name} noStroke />
       </View>
-      <ThemedText className={"font-bold text-lg mx-auto mt-4"}>
+      <ThemedText className={"font-bold text-lg mx-auto mt-4 text-center"}>
         {capitalizeFirstLetter(name)}
       </ThemedText>
     </TouchableOpacity>

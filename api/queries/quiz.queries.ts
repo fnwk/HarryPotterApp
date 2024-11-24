@@ -7,11 +7,11 @@ import useThemeStore from "@/stores/theme.store";
 
 export const useGetQuizQuestions = () => {
   const lang = i18n.language as AppLanguage;
-  const { id, usedQuestions } = useQuizStore((state) => state);
+  const { usedQuestions } = useQuizStore((state) => state);
   const house = useThemeStore((state) => state.hogwartsTheme);
 
   return useQuery({
-    queryKey: ["quiz-questions", lang, house, id],
+    queryKey: ["quiz-questions", lang, usedQuestions, house],
     queryFn: () =>
       QuizApi.getQuestions(lang, usedQuestions, house || "gryffindor"),
   });

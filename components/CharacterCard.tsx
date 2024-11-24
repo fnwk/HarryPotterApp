@@ -7,6 +7,7 @@ import { router } from "expo-router";
 import AppImage from "@/components/common/AppImage";
 import useFavoritesStore from "@/stores/favorites.store";
 import useColor from "@/utils/hooks/useColor";
+import { colors } from "@/utils/themes";
 
 const CharacterCard = (characterData: Character) => {
   const { id, attributes } = characterData;
@@ -48,7 +49,7 @@ const CharacterCard = (characterData: Character) => {
               isFavorite(id) ? "bg-pinkyRed" : "bg-white",
             )}
           >
-            <Icon name={"heart"} width={16} height={16} />
+            <Icon name={"heart"} width={16} height={16} stroke={"black"} />
           </View>
         </Pressable>
         <Pressable onPress={handleNavigate}>
@@ -57,7 +58,7 @@ const CharacterCard = (characterData: Character) => {
               "w-10 h-10 rounded-full bg-white items-center justify-center"
             }
           >
-            <Icon name={"arrow2"} />
+            <Icon name={"arrow2"} stroke={"black"} />
           </View>
         </Pressable>
       </View>
