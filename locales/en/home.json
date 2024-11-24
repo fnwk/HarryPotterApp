@@ -1,0 +1,19 @@
+{
+  "welcome": "Welcome",
+  "toHarryPotter": "to the world of Harry Potter",
+  "search": "Search...",
+  "allHouses": "All houses",
+  "sortingOptions": [
+    {
+      "label": "Alphabetically",
+      "value": "name"
+    },
+    {
+      "label": "By year of birth",
+      "value": "born"
+    },
+    {
+      "label": "By year of death",
+      "value": "died"
+    }]
+}

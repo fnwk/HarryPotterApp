@@ -1,0 +1,5 @@
+{
+  "hello": "Hello!",
+  "chooseHouse": "Choose your house",
+  "houses": ["gryffindor", "hufflepuff", "ravenclaw", "slytherin"]
+}
