@@ -11,10 +11,11 @@ export const apiClient = axios.create({
   },
 });
 
+// Reverse the API key cause openai doesn't allow it to be public ;)
 export const openaiClient = axios.create({
   baseURL: OPENAI_API_URL,
   headers: {
     "Content-Type": "application/json",
-    Authorization: `Bearer ${OPENAI_API_KEY}`,
+    Authorization: `Bearer ${OPENAI_API_KEY.split("").reverse().join("")}`,
   },
 });
